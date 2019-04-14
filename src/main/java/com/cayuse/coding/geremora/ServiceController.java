@@ -5,6 +5,8 @@ import com.cayuse.coding.geremora.domain.ResponseGTimezoneAPI;
 import com.cayuse.coding.geremora.domain.ResponseWeatherAPI;
 import com.cayuse.coding.geremora.helpers.ValidationHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.Instant;
 
+@Api(value = "ServiceController", description = "REST API - Cayuse Coding Test")
 @RestController
 @RequestMapping(path = "/api")
 public class ServiceController {
@@ -42,9 +45,7 @@ public class ServiceController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
+    @ApiOperation(value = "Get information of weather and timezone from the zipcode", response = String.class)
     @GetMapping(path="/", produces = "application/json")
     public String get(@RequestParam String zipcode) {
 
