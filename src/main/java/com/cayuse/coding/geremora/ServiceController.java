@@ -7,6 +7,7 @@ import com.cayuse.coding.geremora.helpers.ValidationHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +48,7 @@ public class ServiceController {
 
     @ApiOperation(value = "Get information of weather and timezone from the zipcode", response = String.class)
     @GetMapping(path="/", produces = "application/json")
-    public String get(@RequestParam String zipcode) {
+    public String get(@RequestParam @ApiParam(value = "A valid US zipcode", required = true) String zipcode) {
 
         if (ValidationHelper.validateZipCode(zipcode)) {
 

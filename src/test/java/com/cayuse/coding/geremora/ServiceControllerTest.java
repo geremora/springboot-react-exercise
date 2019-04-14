@@ -24,8 +24,6 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest(classes = GeremoraApplication.class)
 public class ServiceControllerTest {
 
-    private static final String RESOURCE_LOCATION_PATTERN = "http://localhost/example/v1/hotels/[0-9]+";
-
     @InjectMocks
     ServiceController controller;
 
@@ -51,7 +49,6 @@ public class ServiceControllerTest {
 
     @Test
     public void checkInvalidadZipCode() throws Exception {
-        // Portland - zipcode 97035
         mvc.perform(get("/api/?zipcode=000")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
